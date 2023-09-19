@@ -29,8 +29,8 @@ const Home = () => {
             <Navbar/>
             <Banner banner={ BannerProduct.length && BannerProduct[0]}/>
             <div className='products-heading'>
-              <h2>Best selling products</h2>
-              <p>Speakers of many variations</p>
+              <h2>Best selling shoes</h2>
+              <p>Different shoes</p>
             </div>
             <div className='products-section'>
               <div className='products-container'>
