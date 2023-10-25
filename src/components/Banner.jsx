@@ -1,29 +1,55 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { urlFor } from '../../lib/client';
+import Navbar from './Navbar';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './banner.css'
+// import required modules
+import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 const Banner = ({banner}) => {
   return (
-    // <div className='main-container'>
-    <div className='hero-banner-container main-container'>
-      <div>
-        <p className='beats-solo'>{banner.smallText}</p>
-        <h3>{banner.midText}</h3>
-        <h1>{banner.largeText1}</h1>
-        <img src={urlFor(banner.image)} alt="headphones" className='hero-banner-image'/>
-        <div>
-          <Link to={`product/${banner.product}`}>
-            <button type='button'>{banner.buttonText}</button>
-          </Link>
-          <div className='desc'>
-            <h5>Description</h5>
-            <p>{banner.desc}</p>
-          </div>
-        </div>
-      </div>
+    <div className='banner-container1'>
+      <Navbar/>
+      <Swiper
+        spaceBetween={30}
+        effect={'fade'}
+        navigation={true}
+        pagination={{
+          clickable: true,
+        }}
+        crossFade={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        style={{
+          "--swiper-pagination-color": "#FFBA08",
+          "--swiper-navigation-color": "#FFBA08",
+          "--swiper-pagination-bullet-inactive-color": "#999999",
+        }}
+        loop={true}
+        modules={[EffectFade, Navigation, Pagination, Autoplay]}
+        className="mySwiper"
+      >
+          {banner?.map((items) => {
+            return (
+              urlFor(items.image[0]) && (
+                <SwiperSlide style={{backgroundImage: `url(${urlFor(items.image[0]).url()})`}}>
+                  <div className="slide-content">
+                    <h1>{items.name}</h1>
+                  </div>
+                </SwiperSlide>
+              )
+            )
+          })}
+      </Swiper>
     </div>
-    // </div>
   )
 }
 

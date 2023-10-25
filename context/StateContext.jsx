@@ -59,10 +59,21 @@ export const StateContext = ({children})=>{
       setCartItems(updatedCartItems);
     }
   };
+  const removeCartItemById = (id) => {
+    const updatedCartItems = [...cartItems];
+    const itemToRemove = updatedCartItems.find((item) => item._id === id);
+
+    if (itemToRemove) {
+      setTotalPrice((prevTotal) => prevTotal - itemToRemove.price * itemToRemove.quantity);
+      setTotalQuantity((prevQuantity) => prevQuantity - itemToRemove.quantity);
+      setCartItems(updatedCartItems.filter((item) => item._id !== id));
+      toast.error(`${itemToRemove.name} removed from the cart`);
+    }
+  };
   
   return (
     <Context.Provider value={{
-      showCart,cartItems,totalPrice,totalQuantity,qty,addQty,decQty, AddCart, setShowCart, toggleCartItemQty
+      showCart,cartItems,totalPrice,totalQuantity,qty,addQty,decQty, AddCart, setShowCart, toggleCartItemQty, removeCartItemById
     }}>
       {children}
     </Context.Provider>

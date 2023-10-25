@@ -2,7 +2,7 @@ import React from 'react'
 
 const error = () => {
   return (
-    <div>Página nao encontrada</div>
+    <div style={{color:'white'}}>Página nao encontrada</div>
   )
 }
 

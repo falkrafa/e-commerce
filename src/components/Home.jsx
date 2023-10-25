@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import BannerFooter from './BannerFooter';
 import { Link } from 'react-router-dom';
+import ProductSection from './ProductSection';
+
+
 const Home = () => {
   const [product, setProduct] = useState(null)
   const [BannerProduct, setBannerProduct] = useState(null)
@@ -24,19 +27,15 @@ const Home = () => {
   },[])
   return (
     <>
+      {product <=0 && BannerProduct <= 0 &&(
+        <div className='gif-container'>
+          <img src='https://i.gifer.com/3BBV.gif'></img>
+        </div>
+      )}
       {product && BannerProduct &&(
         <>
-            <Navbar/>
-            <Banner banner={ BannerProduct.length && BannerProduct[0]}/>
-            <div className='products-heading'>
-              <h2>Best selling shoes</h2>
-              <p>Different shoes</p>
-            </div>
-            <div className='products-section'>
-              <div className='products-container'>
-                  {product?.map((product) => <Product key={product._id} product={product}/>)}
-              </div>
-            </div>
+            <Banner banner={ product}/>
+            <ProductSection product={product}/>
             <div className='second-container'>
             <div className='container-image'>
               <div className='left2'>
@@ -46,7 +45,6 @@ const Home = () => {
               </div>
             </div>
             </div>
-              <Footer footer={BannerProduct.length && BannerProduct[0]}/>
               <BannerFooter/>
         </>
       )}

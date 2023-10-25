@@ -1,0 +1,25 @@
+.banner-container1 .swiper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  /* padding-top: 50px;
+  padding-bottom: 50px; */
+}
+
+.banner-container1 .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  /* width: 300px;
+  height: 300px; */
+}
+.slide-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.banner-container1 .swiper-slide h1{
+  font-size: 8em;
+  color: rgba(255,255,255,0.8);
+}
